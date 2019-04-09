@@ -20,7 +20,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn run test | tee results.txt && git add results.txt"
+      "pre-commit": "yarn run test | tee results.txt && git add results.txt",
+      "post-commit": "git add results.txt"
     }
   }
 }
