@@ -15,9 +15,12 @@
     "cathedra-default-presenter": "^0.0.3",
     "husky": "^1.3.1"
   },
+  "scripts": {
+    "test": "./run.sh"
+  },
   "husky": {
     "hooks": {
-      "pre-commit": "./run.sh > results.txt && git add results.txt"
+      "pre-commit": "yarn run test | tee results.txt && git add results.txt"
     }
   }
 }
