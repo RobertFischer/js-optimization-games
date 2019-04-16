@@ -4,24 +4,35 @@ $ ./run.sh
 [2/4] Fetching packages...
 [3/4] Linking dependencies...
 [4/4] Building fresh packages...
+Running ./suites/arrayEmptyTests.js using Node v11.13.0
+$ /Users/robert/wkdir/js-optimization-games/node_modules/.bin/cathedra ./suites/arrayEmptyTests.js
+Testing Array Equals Implementations
+  ● _.isEmpty (Lodash; dereference) - 3731343.2836 ops/s 
+  ✖ _isEmpty (Lodash; direct) - 3663003.6630 ops/s (worst)
+  ● === [] (equals empty array; inline) - 5780346.8208 ops/s 
+  ● === EMPTY_ARRAY (equals empty array; constant) - 5747126.4368 ops/s 
+  ● .length !== 0 (length does not equal zero) - 5494505.4945 ops/s 
+  ● .length > 0 (length is greater than zero) - 5494505.4945 ops/s 
+  ● .length (length, used as implicit boolean check) - 4405286.3436 ops/s 
+  √ Boolean(.length) (length, explicitly cast to boolean) - 6172839.5062 ops/s (best)
 Running ./suites/forEach.js using Node v11.13.0
 $ /Users/robert/wkdir/js-optimization-games/node_modules/.bin/cathedra ./suites/forEach.js
 Testing forEach Implementations
-  √ for(val i = 0; i < arg.length; i++) (native for-loop iteration) - 12285.0123 ops/s (best)
-  ✖ for(const val in arg) (native for...in-loop) - 9354.5370 ops/s (worst)
-  ● arg.forEach (native .forEach) - 10351.9669 ops/s 
-  ● _.forEach (Lodash; with dereference) - 10952.9025 ops/s 
-  ● _forEach (Lodash; no dereference) - 10741.1386 ops/s 
+  √ for(val i = 0; i < arg.length; i++) (native for-loop iteration) - 12121.2121 ops/s (best)
+  ✖ for(const val in arg) (native for...in-loop) - 9310.9870 ops/s (worst)
+  ● arg.forEach (native .forEach) - 9970.0897 ops/s 
+  ● _.forEach (Lodash; with dereference) - 10351.9669 ops/s 
+  ● _forEach (Lodash; no dereference) - 10660.9808 ops/s 
 Running ./suites/stringCoercion.js using Node v11.13.0
 $ /Users/robert/wkdir/js-optimization-games/node_modules/.bin/cathedra ./suites/stringCoercion.js
 Testing toString Implementations
-  ● _.toString (Lodash; dereference) - 3400.2040 ops/s 
-  √ _toString (Lodash; direct call) - 3538.5704 ops/s (best)
-  ✖ "" + arg (string coercion through addition operator) - 2904.4438 ops/s (worst)
-  ● arg.toString() (blind .toString() method call; no type checking) - 2987.7502 ops/s 
-  ● typeof arg === "string" ? arg : arg.toString() ; (.toString() method call with typeof sanity check in ternary operator) - 3053.4351 ops/s 
-  ● if(typeof arg !== "string") arg = arg.toString() (.toString() method call with typeof sanity check in if block) - 3071.2531 ops/s 
-  ● _isString(arg) (.toString() method call with direct Lodash _.isString() sanity check) - 3031.2216 ops/s 
-  ● _.isString(arg) (.toString() method call with dereferenced Lodash _.isString() sanity check) - 3114.2946 ops/s 
-  ● String(arg) (String constructor; no type checking) - 2941.1765 ops/s 
-Done in 36.52s.
+  ✖ _.toString (Lodash; dereference) - 3331.1126 ops/s (worst)
+  ● _toString (Lodash; direct call) - 3411.8048 ops/s 
+  ● "" + arg (string coercion through addition operator) - 3649.6350 ops/s 
+  ● arg.toString() (blind .toString() method call; no type checking) - 3624.5016 ops/s 
+  ● typeof arg === "string" ? arg : arg.toString() ; (.toString() method call with typeof sanity check in ternary operator) - 3664.3459 ops/s 
+  ● if(typeof arg !== "string") arg = arg.toString() (.toString() method call with typeof sanity check in if block) - 3681.8851 ops/s 
+  ● _isString(arg) (.toString() method call with direct Lodash _.isString() sanity check) - 3636.3636 ops/s 
+  √ _.isString(arg) (.toString() method call with dereferenced Lodash _.isString() sanity check) - 3770.7391 ops/s (best)
+  ● String(arg) (String constructor; no type checking) - 3650.9675 ops/s 
+Done in 35.52s.
